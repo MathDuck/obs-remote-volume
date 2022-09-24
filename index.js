@@ -309,7 +309,9 @@ function update(sources) {
 			TD([
 				SPAN({className: "percent"}, (Math.sqrt(source.volume)*100).toFixed(2)),
 				source_elements["!mute-" + name] = BUTTON({type: "button",
-					onclick: () => send_request("ToggleMute", {"source": name})},
+					onclick: () => send_request(v4v5("ToggleMute", "ToggleInputMute"), {
+						[v4v5("source", "inputName")]: name
+					})},
 					//NOTE: source.muted is actually never sent as of 20190719.
 					source.muted ? "Unmute" : "Mute")
 			]),
